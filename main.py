@@ -3,12 +3,22 @@ from aiogram import Bot, Dispatcher
 from core.settings import settings
 from core.handlers.basic import echo
 
+
+async def start_bot(bot: Bot):
+    await bot.send_message(settings.bots.admin_id, text=f'<b>Бот запущен!</b>')
+
+
+async def stop_bot(bot: Bot):
+    await bot.send_message(settings.bots.admin_id, text='<b>Бот остановлен!</b>')
+
 # Настройка логирования
 logging.basicConfig(level=logging.INFO)
 
 # Инициализация бота и диспетчера
-bot = Bot(token=settings.bots.bot_token)
+bot = Bot(token=settings.bots.bot_token, parse_mode='HTML')
 dp = Dispatcher()
+dp.startup.register(start_bot)
+dp.shutdown.register(stop_bot)
 # регистрируем эхо функцию
 dp.message.register(echo)
 
