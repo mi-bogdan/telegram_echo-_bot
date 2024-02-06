@@ -1,4 +1,3 @@
-# telegram_echo_bot
 <h2 align="center">Телеграм ЭХО бот</h2>
 
 **Ссылки**:
